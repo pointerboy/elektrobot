@@ -13,6 +13,7 @@ async def on_ready():
     print('------')
 
     sajt = Sajt('luka.trbovic18', 'Ets!2345')
+    sajt.ListajIteme(287)
 
 @bot.command()
 async def saberi(ctx, left: float, right: float):
