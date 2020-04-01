@@ -36,9 +36,9 @@ class Sajt():
                 filed = open(i['ime']+".txt", 'w')
                 filed.write(rezultat)
                 f.close()
-                print("Sajt:: ", i['ime'], "je kolektovan.")
-         
-    def VratiItem(self, id_predmeta: int):
+                print("Sajt:: Predmet ", i['ime'], "je kolektovan.")
+
+    def VratiItem(self, id_predmeta):
         stranica_url = SajtPredmeti.url+str(id_predmeta)
 
         stranica = Sajt.s.get(stranica_url)
