@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup as bs
 from lxml import html
 
 import json 
+from podaci import Podaci
 
 class SajtPredmeti():
     url = 'http://37.0.71.50/ets/course/view.php?id='
@@ -44,4 +45,4 @@ class Sajt():
         lista = html.fromstring(stranica.content)
 
         kontent= lista.xpath('//span[@class="instancename"]/text()')
-        return str(kontent[1:])
+        return Podaci.ListToString(kontent)
