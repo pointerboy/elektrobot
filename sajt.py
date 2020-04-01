@@ -4,9 +4,12 @@ from requests import Session
 from bs4 import BeautifulSoup as bs
 from lxml import html
 
+import json 
+
 class SajtPredmeti():
     url = 'http://37.0.71.50/ets/course/view.php?id='
-    informatika = url + str(287)
+    lista_predmeta = [("Informatika",287,
+                      "Matematika", 333)]
 
 class Sajt():
     s = Session()
@@ -20,15 +23,25 @@ class Sajt():
         bs_content = bs(site.content, "html.parser")
         login_data = {"username":username, "password":password}
         Sajt.s.post(login_url, login_data)
-        home_page = Sajt.s.get(SajtPredmeti.informatika)
-        
-        print(home_page)
 
-    def ListajIteme(self, id_predmeta: int):
+    def KolektujIteme(self):
+        with open('predmeti.json') as f:
+            data = json.load(f)
+
+            for i in data['predmeti']:
+                print("Sajt:: Kolektovanje predmeta ", i['ime'])
+
+                rezultat = Sajt.VratiItem(self, i['index'])
+                filed = open(i['ime']+".txt", 'w')
+                filed.write(rezultat)
+                f.close()
+                print("Sajt:: i['ime'] ", "je kolektovan.")
+         
+    def VratiItem(self, id_predmeta: int):
         stranica_url = SajtPredmeti.url+str(id_predmeta)
 
         stranica = Sajt.s.get(stranica_url)
         lista = html.fromstring(stranica.content)
 
-        test = lista.xpath('//span[@class="instancename"]/text()')
-        print(test)
+        kontent= lista.xpath('//span[@class="instancename"]/text()')
+        return kontent
