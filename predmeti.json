@@ -1,0 +1,14 @@
+{
+  "url": "",
+
+  "predmeti":[
+    {
+      "ime": "Informatika",
+      "index": 223
+    },
+    {
+      "ime":"Matematika",
+      "index":223
+    }
+  ]
+}
