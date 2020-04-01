@@ -35,7 +35,7 @@ class Sajt():
                 filed = open(i['ime']+".txt", 'w')
                 filed.write(rezultat)
                 f.close()
-                print("Sajt:: i['ime'] ", "je kolektovan.")
+                print("Sajt:: ", i['ime'], "je kolektovan.")
          
     def VratiItem(self, id_predmeta: int):
         stranica_url = SajtPredmeti.url+str(id_predmeta)
@@ -44,4 +44,4 @@ class Sajt():
         lista = html.fromstring(stranica.content)
 
         kontent= lista.xpath('//span[@class="instancename"]/text()')
-        return kontent
+        return str(kontent[1:])
