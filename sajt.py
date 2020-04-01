@@ -45,4 +45,4 @@ class Sajt():
         lista = html.fromstring(stranica.content)
 
         kontent= lista.xpath('//span[@class="instancename"]/text()')
-        return Podaci.ListToString(kontent)
+        return Podaci.ListToString(self, kontent)
