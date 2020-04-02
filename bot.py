@@ -6,6 +6,8 @@ bot = commands.Bot(command_prefix='?', description='')
 
 from sajt import Sajt
 
+import os 
+
 sajt = Sajt('luka.trbovic18', 'Ets!2345')
 
 @bot.event
@@ -18,7 +20,6 @@ async def on_ready():
 @bot.command()
 async def saberi(ctx, left: float, right: float):
     await ctx.send(left + right)
-    await ctx.send("Brzi od suzane (●'◡'●)(●'◡'●)")
 
 @bot.command()
 async def predmet_list(ctx, right):
@@ -26,4 +27,4 @@ async def predmet_list(ctx, right):
 
     output = sajt.VratiItem(int(right))
     await ctx.send(output)
-bot.run('Njk0NTEyOTM3NTAyNjM4MTgw.XoMuVQ.j-VmuIqINxWz_gJaze-kL7wFREU')
+bot.run(os.getenv('KEY'))
